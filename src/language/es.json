@@ -1,0 +1,10 @@
+{
+    "LoginView":{
+        "title": "Iniciar sesión",
+        "username": "Usuario",
+        "email": "Correo",
+        "password": "Contraseña",
+        "submit": "Enviar",
+        "forgotPassword": "Olvidaste la Contraseña?"
+    }
+}
