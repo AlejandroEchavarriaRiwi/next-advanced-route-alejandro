@@ -1,5 +1,4 @@
 export default interface IFormData{
-    name: string,
-    email: string,
+    username: string,
     password: string
 }
