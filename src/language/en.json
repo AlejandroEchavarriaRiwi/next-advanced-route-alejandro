@@ -1,10 +1,20 @@
 {
-    "LoginView":{
+    "LoginView": {
         "title": "Login",
         "username": "Username",
         "email": "Email",
         "password": "Password",
         "submit": "Submit",
         "forgotPassword": "Forgot Password?"
+    },
+    "NavBar": {
+        "home": "Home",
+        "login": "Login",
+        "products": "Products",
+        "logout": "Logout"
+    },
+    "Home": {
+        "title": "Welcome to Our Store!",
+        "description": "Discover our products at the best prices"
     }
 }

@@ -6,5 +6,15 @@
         "password": "Contraseña",
         "submit": "Enviar",
         "forgotPassword": "Olvidaste la Contraseña?"
+    },
+    "NavBar": {
+        "home": "Inicio",
+        "login": "Ingresar",
+        "products": "Productos",
+        "logout": "Cerrar sesión"
+    },
+    "Home": {
+        "title": "Bienvenidos a nuestra tienda!",
+        "description": "Descubre nuestros mejores productos..."
     }
 }
