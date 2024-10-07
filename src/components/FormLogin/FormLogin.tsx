@@ -3,6 +3,72 @@
 import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from 'next/navigation';
+import NavBar from "../ui/NavBar/NavBar";
+import styled from "styled-components";
+import Link from "next/link";
+
+const Div = styled.div`
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+
+    h2{
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    h4{
+        margin-top: 30px;
+    }
+
+    a{  
+        text-decoration: none;
+        color: #333333;
+    }
+`
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+
+    button{
+        width: 200px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: gray;
+        color: white;
+        font-size: 15px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        cursor: pointer;
+        
+        :hover{
+            background-color: white;
+            color: gray;
+        }
+    }
+`
+const DivInput = styled.div`
+    margin-bottom: 20px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+
+    input{
+        width: 200px;
+        padding: 10px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+`
 
 export default function LoginForm() {
     const [formData, setFormData] = useState({
@@ -44,41 +110,44 @@ export default function LoginForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto mt-8">
-            <div>
-                <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900">Username</label>
+        <>
+        <NavBar />
+        <Div>
+        <h2>Sign in to your account</h2>
+        <Form onSubmit={handleSubmit}>
+            <DivInput>
+                <label htmlFor="username">Username </label>
                 <input
                     type="text"
                     id="username"
                     name="username"
                     value={formData.username}
                     onChange={handleChange}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     required
-                    disabled={isLoading}
-                />
-            </div>
-            <div>
-                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                    disabled={isLoading} />
+            </DivInput>
+            <DivInput>
+                <label htmlFor="password">Password </label>
                 <input
                     type="password"
                     id="password"
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     required
-                    disabled={isLoading}
-                />
-            </div>
-            {error && <p className="text-red-500 text-sm">{error}</p>}
-            <button 
-                type="submit" 
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                    disabled={isLoading} />
+            </DivInput>
+            {error && <p>{error}</p>}
+            <button
+                type="submit"
                 disabled={isLoading}
             >
                 {isLoading ? 'Logging in...' : 'Login'}
             </button>
-        </form>
+        </Form>
+
+        <h4><Link href="/register">No tienes una cuenta? Registrate Aqui</Link></h4>
+        </Div>
+        </>
     );
 }
