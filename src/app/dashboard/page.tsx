@@ -1,9 +1,10 @@
-'use client';
-
+'use client'
 import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import NavbarDashboard from '../../components/ui/NavBar/NavBarDashboard'; 
+import NavbarDashboard from '../../components/ui/NavBar/NavBarDashboard';
+import ProductCard from '../../components/ui/Cards/CardsProducts';
+import styled from 'styled-components';
 
 interface Product {
   id: number;
@@ -17,6 +18,39 @@ interface Product {
     count: number;
   };
 }
+
+const DashboardContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+`;
+
+const Title = styled.h1`
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+`;
+
+const ProductGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+`;
+
+const LoadingMessage = styled.div`
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+  margin-top: 20px;
+`;
+
+const ErrorMessage = styled.div`
+  color: #d32f2f;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+`;
 
 export default function Dashboard() {
   const { data: session, status } = useSession();
@@ -58,34 +92,36 @@ export default function Dashboard() {
       setIsLoading(false);
     }
   };
-    if (status === 'loading') {
-        return <div>Loading session...</div>;
-    }
 
-    if (status === 'unauthenticated') {
-        return <div>Access denied. Please log in.</div>;
-    }
+  const handleProductClick = (id: number) => {
+    router.push(`/auth/products/${id}`);
+  };
 
-    return (
-        <div className="container mx-auto p-4">
-            <NavbarDashboard />
-            <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
-            {isLoading && <div>Loading products...</div>}
-            {error && <div className="text-red-500">{error}</div>}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {products.map((product) => (
-                    <div key={product.id} className="border p-4 rounded-lg">
-                        <img src={product.image} alt={product.title} className="w-full h-48 object-cover mb-2" />
-                        <h2 className="text-lg font-semibold">{product.title}</h2>
-                        <p className="text-gray-600">${product.price.toFixed(2)}</p>
-                        <p className="text-sm text-gray-500 mt-2">{product.description.substring(0, 100)}...</p>
-                        <div className="mt-2">
-                            <span className="text-yellow-500">★ {product.rating.rate}</span>
-                            <span className="text-gray-500 ml-2">({product.rating.count} reviews)</span>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
+  if (status === 'loading') {
+    return <LoadingMessage>Loading session...</LoadingMessage>;
+  }
+
+  if (status === 'unauthenticated') {
+    return <ErrorMessage>Access denied. Please log in.</ErrorMessage>;
+  }
+
+  return (
+    <>
+      <NavbarDashboard />
+      <DashboardContainer>
+        <Title>Dashboard</Title>
+        {isLoading && <LoadingMessage>Loading products...</LoadingMessage>}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <ProductGrid>
+          {products.map((product) => (
+            <ProductCard 
+              key={product.id} 
+              {...product} 
+              onClick={() => handleProductClick(product.id)} // Pass click handler
+            />
+          ))}
+        </ProductGrid>
+      </DashboardContainer>
+    </>
+  );
 }

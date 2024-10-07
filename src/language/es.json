@@ -16,5 +16,10 @@
     "Home": {
         "title": "Bienvenidos a nuestra tienda!",
         "description": "Descubre nuestros mejores productos..."
+    },
+    "NavBarDashboard": {
+        "dashboard": "Panel de administrador",
+        "welcome": "Bienvenido",
+        "logout": "Cerrar sesión"
     }
 }

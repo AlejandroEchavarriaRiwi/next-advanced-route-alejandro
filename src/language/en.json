@@ -16,5 +16,10 @@
     "Home": {
         "title": "Welcome to Our Store!",
         "description": "Discover our products at the best prices"
+    },
+    "NavBarDashboard": {
+        "dashboard": "Dashboard",
+        "welcome": "Welcome",
+        "logout": "Logout"
     }
 }

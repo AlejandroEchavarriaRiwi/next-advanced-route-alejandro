@@ -146,7 +146,7 @@ export default function LoginForm() {
             </button>
         </Form>
 
-        <h4><Link href="/register">No tienes una cuenta? Registrate Aqui</Link></h4>
+        <h4><Link href="/auth/signup">No tienes una cuenta? Registrate Aqui</Link></h4>
         </Div>
         </>
     );

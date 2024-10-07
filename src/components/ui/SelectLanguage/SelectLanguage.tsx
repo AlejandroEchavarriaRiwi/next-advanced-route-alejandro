@@ -24,8 +24,6 @@ const Button = styled.button`
     }
     `
 
-const Span = styled.span`
-`
 export default function SelectLanguage():React.ReactElement{
     const router = useRouter()
 
