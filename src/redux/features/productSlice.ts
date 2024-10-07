@@ -1,17 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-interface Product {
-  title: string;
-  image: string;
-  price: number;
-  description: string;
-  category: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
 
+interface Product {
+    category: string;
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    image: string;
+    rating: {
+      rate: number;
+      count: number;
+    };
+  }
 interface ProductState {
   product: Product | null;
   loading: boolean;
@@ -27,7 +28,7 @@ const initialState: ProductState = {
 export const fetchProduct = createAsyncThunk<Product, string>(
   'product/fetchProduct',
   async (id) => {
-    const response = await fetch(`/api/auth/products/${id}`);
+    const response = await fetch(`/api/products/${id}`);
     if (!response.ok) {
       throw new Error('Failed to fetch product');
     }
@@ -51,7 +52,7 @@ const productSlice = createSlice({
       })
       .addCase(fetchProduct.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'Something went wrong';
+        state.error = action.error.message || 'Failed to fetch';
       });
   },
 });

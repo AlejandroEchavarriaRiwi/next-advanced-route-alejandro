@@ -1,6 +1,6 @@
 
 import { Provider } from 'react-redux';
-import { store } from './store';
+import store from './store';
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (

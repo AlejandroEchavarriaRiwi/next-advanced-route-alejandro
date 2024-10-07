@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { fetchProduct } from '../../../../redux/features/productSlice';
 import { RootState } from '../../../../redux/store';
 import styled from 'styled-components';
+import { AppDispatch } from '@/redux/store/store';
 
 const Container = styled.div`
   max-width: 800px;
@@ -46,7 +47,7 @@ const Loader = styled.div`
 `;
 
 const ProductDetails: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
   const { product, loading, error } = useSelector((state: RootState) => state.product);
