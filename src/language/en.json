@@ -1,0 +1,10 @@
+{
+    "LoginView":{
+        "title": "Login",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "submit": "Submit",
+        "forgotPassword": "Forgot Password?"
+    }
+}
