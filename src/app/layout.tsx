@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { Onest } from "next/font/google";
 import "./globals.css";
 import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from 'next-intl'
 import { ReduxProviders } from "@/app/reduxProvider";
 import { Providers } from "./Providers";
+
+const onest = Onest({weight: "400", subsets: ["latin"]})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +22,7 @@ export default async function RootLayout({
   const messages = await getMessages()
   return (
     <html lang={locale}>
-      <body>
+      <body className={onest.className}>
         <NextIntlClientProvider messages={messages}>
           <ReduxProviders>
             <Providers>
