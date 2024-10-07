@@ -2,7 +2,7 @@ import React from 'react';
 import { InputStyle } from './InputStyle';
 
 interface InputProps {
-  placeholder: string;
+  placeholder?: string;
   type: string;
   name: string;
   value?: string;
